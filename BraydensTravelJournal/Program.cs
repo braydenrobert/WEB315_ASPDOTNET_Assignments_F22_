@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<BraydensTravelJournalContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BraydensTravelJournalContext") ?? throw new InvalidOperationException("Connection string 'BraydensTravelJournalContext' not found.")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("BraydensTravelJournalContext") ?? throw new InvalidOperationException("Connection string 'BraydensTravelJournalContext' not found.")));
+
+// builder.Services.AddDbContext<ClassExampleRazorPagesCollegesContext>(options =>
+//     options.UseSqlite(builder.Configuration.GetConnectionString("ClassExampleRazorPagesCollegesContext") ?? throw new InvalidOperationException("Connection string 'ClassExampleRazorPagesCollegesContext' not found.")));
 
 var app = builder.Build();
 

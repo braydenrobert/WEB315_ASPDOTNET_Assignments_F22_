@@ -27,23 +27,26 @@ namespace BraydensTravelJournal.Pages.Journals
 
         [BindProperty(SupportsGet = true)]
         public int IntegerSort { get; set; }
+        [BindProperty(SupportsGet = true)]
         public string FilterOne { get; set; }
+        [BindProperty(SupportsGet = true)]
         public string FilterTwo { get; set; }
+        [BindProperty(SupportsGet = true)]
         public string FilterThree { get; set; }
 
-        public async Task OnGetAsync(int sortOrder, string searchName, string searchDescription, string searchAddress)
+        public async Task OnGetAsync()//(int sortOrder, string searchName, string searchDescription, string searchAddress)
         {
 
-            FilterOne = searchName;
-            FilterTwo = searchDescription;
-            FilterThree = searchAddress;
+            // FilterOne = searchName;
+            // FilterTwo = searchDescription;
+            // FilterThree = searchAddress;
 
             var search = from a in _context.Journal
                          select a;
-            var description = from b in _context.Journal
-                                            select b;
-            var address = from c in _context.Journal
-                                             select c;
+            // var description = from b in _context.Journal
+            //                                 select b;
+            // var address = from c in _context.Journal
+            //                                  select c;
 
             if (_context.Journal != null)
             {
@@ -62,8 +65,8 @@ namespace BraydensTravelJournal.Pages.Journals
                 search = search.Where(c => c.address == FilterThree);
             }
             Journal = await search.AsNoTracking().ToListAsync();
-            Journal = await address.ToListAsync();
-            Journal = await description.ToListAsync();
+            // Journal = await address.ToListAsync();
+            // Journal = await description.ToListAsync();
         }
     }
 }
